@@ -1,0 +1,11 @@
+framework module ValifySelfie {
+  umbrella header "ValifySelfie.h"
+
+  export *
+  module * { export * }
+}
+
+module ValifySelfie.Swift {
+    header "ValifySelfie-Swift.h"
+    requires objc
+}

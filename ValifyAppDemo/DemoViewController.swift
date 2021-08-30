@@ -1,0 +1,35 @@
+//
+//  ViewController.swift
+//  ValifyAppDemo
+//
+//  Created by Mohamed Korany on 29/08/2021.
+//
+
+import UIKit
+import ValifySelfie
+
+// MARK: - DemoViewController
+//
+class DemoViewController: UIViewController {
+  
+  // MARK: - IBOutlets
+  
+  @IBOutlet weak var imageView: UIImageView!
+  
+  // MARK: - IBActions
+  
+  @IBAction func showValifyTapped(_ sender: Any) {
+    showValify(from: self, with: .present)
+  }
+}
+
+// MARK: - ValifyDelegate
+//
+extension DemoViewController: ValifySelfieDelegate {
+  
+  func didFinishScan(from viewController: UIViewController, with result: Result<UIImage, Error>) {
+    viewController.dismiss(animated: true)
+    let image = try? result.get()
+    self.imageView.image = image?.withHorizontallyFlippedOrientation()
+  }
+}
